@@ -13,9 +13,10 @@
 
 | STT | Họ và tên | MSSV | Vai trò chính | Module/deliverable sở hữu |
 | --: | --- | --- | --- | --- |
-| 1 | Đinh Văn Hùng | 2A202602443 | Nhóm trưởng | [File, hàm hoặc artifact] |
-| 2 | Lê Hoàng Thiên Phú | 2A202602908 | Thành viên | [File, hàm hoặc artifact] |
-| 3 | Nguyễn Thanh Phong | 2A202602843 | Thành viên | [File, hàm hoặc artifact] |
+| 1 | Đinh Văn Hùng | 2A202602443 | Nhóm trưởng & Pipeline Integrator | `core/`, `src/pipelines/phase1.py`, `src/pipelines/corruption_flow.py` |
+| 2 | Nguyễn Thanh Phong | 2A202602843 | Data Foundation & Recovery | `src/ingestion/crossref.py`, `src/ingestion/cleaning.py`, raw snapshot và repair |
+| 3 | Lê Hoàng Thiên Phú | 2A202602908 | RAG & Vector Index Specialist | `src/retrieval/`, MiniLM embeddings và ChromaDB |
+| 4 | Hoàng Trung Khải | 2A202602947 | Observability & Evaluation Lead | `src/observability/`, `src/evaluation/`, metrics và reports |
 
 ## 2. Tóm tắt kết quả
 
@@ -40,13 +41,13 @@ Crossref API / raw snapshot
 
 | Khối | Input | Xử lý chính | Output/artifact | Owner |
 | --- | --- | --- | --- | --- |
-| Ingestion | Crossref API hoặc raw snapshot | Query, parse và chuẩn hóa record thô; fallback khi request lỗi | `data/raw/crossref_response.json`, `data/raw/crossref_records.json` | [Theo phân công nhóm] |
-| Cleaning | Raw records | Chuẩn hóa text/dates, loại thiếu DOI/title/date, bỏ DOI trùng, tạo trường dẫn xuất | `data/clean/papers_clean.csv`, `data/clean/papers_clean.json` | [Theo phân công nhóm] |
-| Embedding/index | Clean/corrupted/repaired dataframe | Embedding bằng MiniLM và tạo collection Chroma tách biệt | `data/embeddings/`, `data/chroma/` | [Theo phân công nhóm] |
-| Evaluation | Chroma index và test set cố định | Semantic retrieval, sinh câu trả lời, đo hit rate, token F1 và LLM Judge | `data/results/*_metrics.json`, `*_answers.json` | [Theo phân công nhóm] |
-| Observability | Dataframe từng trạng thái | Great Expectations checks và freshness gate | `data/quality/*_quality_report.json`, `*_freshness.json` | [Theo phân công nhóm] |
-| Corruption/repair | Clean data và raw snapshot | Tiêm sáu lỗi có kiểm soát; rebuild từ raw snapshot | `corruption_log.json`, clean/embedding repaired artifacts | [Theo phân công nhóm] |
-| Orchestration | Settings và các module | Chạy tuần tự baseline hoặc corruption–repair flow | `script/run_phase1.py`, `script/run_corruption_flow.py` | [Theo phân công nhóm] |
+| Ingestion | Crossref API hoặc raw snapshot | Query, parse và chuẩn hóa record thô; fallback khi request lỗi | `data/raw/crossref_response.json`, `data/raw/crossref_records.json` | Nguyễn Thanh Phong |
+| Cleaning | Raw records | Chuẩn hóa text/dates, loại thiếu DOI/title/date, bỏ DOI trùng, tạo trường dẫn xuất | `data/clean/papers_clean.csv`, `data/clean/papers_clean.json` | Nguyễn Thanh Phong |
+| Embedding/index | Clean/corrupted/repaired dataframe | Embedding bằng MiniLM và tạo collection Chroma tách biệt | `data/embeddings/`, `data/chroma/` | Lê Hoàng Thiên Phú |
+| Evaluation | Chroma index và test set cố định | Semantic retrieval, sinh câu trả lời, đo hit rate, token F1 và LLM Judge | `data/results/*_metrics.json`, `*_answers.json` | Hoàng Trung Khải |
+| Observability | Dataframe từng trạng thái | Great Expectations checks và freshness gate | `data/quality/*_quality_report.json`, `*_freshness.json` | Hoàng Trung Khải |
+| Corruption/repair | Clean data và raw snapshot | Tiêm sáu lỗi có kiểm soát; rebuild từ raw snapshot | `corruption_log.json`, clean/embedding repaired artifacts | Nguyễn Thanh Phong & Đinh Văn Hùng |
+| Orchestration | Settings và các module | Chạy tuần tự baseline hoặc corruption–repair flow | `script/run_phase1.py`, `script/run_corruption_flow.py` | Đinh Văn Hùng |
 
 ## 4. Cách tái hiện kết quả
 
@@ -202,7 +203,7 @@ Bảng dưới dùng snapshot nhất quán trong `data/reports/corruption_report
 ## 13. Checklist trước khi nộp
 
 - [x] Repository và cấu hình không secret đã được ghi nhận.
-- [ ] Phân công được nhóm tự hoàn thiện và khớp với module/artifact thực tế.
+- [x] Phân công được nhóm tự hoàn thiện và khớp với module/artifact thực tế.
 - [x] Baseline pipeline đã chạy thành công: 24 clean rows.
 - [x] Quality smoke test đạt `True`; test set có 5 câu hỏi; retrieval smoke test trả về 2 tài liệu với `top_k=2`.
 - [x] Baseline, corrupted và repaired dùng cùng `data/eval/test_set.json`.
@@ -210,4 +211,4 @@ Bảng dưới dùng snapshot nhất quán trong `data/reports/corruption_report
 - [x] Kết luận quality/freshness có đối chiếu `data/quality/`.
 - [x] Có raw, clean, index, metrics, quality/freshness và reports theo cấu trúc bài.
 - [ ] Mỗi thành viên hoàn thành báo cáo vai trò riêng và kiểm tra Contributors trên `main`.
-- [ ] Rà soát lần cuối để bảo đảm không commit `.env`, API key, token hoặc secret.
+- [x] Rà soát lần cuối để bảo đảm không commit `.env`, API key, token hoặc secret.
