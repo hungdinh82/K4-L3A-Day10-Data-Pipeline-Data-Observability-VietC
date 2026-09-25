@@ -1,0 +1,67 @@
+{
+  "original_rows": 24,
+  "corrupted_rows": 24,
+  "scenarios": [
+    {
+      "scenario": "drop_latest_records",
+      "description": "Dropped the newest records to simulate loss of fresh data.",
+      "count": 4,
+      "paper_ids": [
+        "10.1145/3637528.3671812",
+        "10.1145/3637528.3671808",
+        "10.1145/3637528.3671804",
+        "10.1145/3637528.3671807"
+      ]
+    },
+    {
+      "scenario": "blank_summary",
+      "description": "Blanked summaries to simulate incomplete source records.",
+      "count": 2,
+      "paper_ids": [
+        "10.1145/3637528.3671802",
+        "10.1145/3637528.3671824"
+      ]
+    },
+    {
+      "scenario": "inject_text_noise",
+      "description": "Injected meaningless tokens into embedding text.",
+      "count": 2,
+      "paper_ids": [
+        "10.1145/3637528.3671823",
+        "10.1145/3637528.3671822"
+      ],
+      "noise": "[NOISE_X9Q !@# CORRUPTED_TOKEN]"
+    },
+    {
+      "scenario": "truncate_title",
+      "description": "Truncated titles below ten characters.",
+      "count": 2,
+      "paper_ids": [
+        "10.1145/3637528.3671821",
+        "10.1145/3637528.3671810"
+      ],
+      "max_title_length": 8
+    },
+    {
+      "scenario": "stale_date",
+      "description": "Moved publication dates five years into the past.",
+      "count": 2,
+      "paper_ids": [
+        "10.1145/3637528.3671820",
+        "10.1145/3637528.3671819"
+      ],
+      "published": "2021-09-25"
+    },
+    {
+      "scenario": "duplicate_rows",
+      "description": "Duplicated rows to simulate repeated ingestion.",
+      "count": 4,
+      "paper_ids": [
+        "10.1145/3637528.3671802",
+        "10.1145/3637528.3671824",
+        "10.1145/3637528.3671823",
+        "10.1145/3637528.3671822"
+      ]
+    }
+  ]
+}

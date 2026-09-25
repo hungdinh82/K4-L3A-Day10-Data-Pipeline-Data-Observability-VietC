@@ -41,6 +41,11 @@ class Paths:
     repaired_answers: Path
     comparison_report: Path
 
+    @property
+    def test_set_json(self) -> Path:
+        """Backward-compatible name used by the Checkpoint 2 smoke test."""
+        return self.eval_testset
+
 
 @dataclass(frozen=True)
 class Settings:
@@ -127,7 +132,7 @@ def load_settings(project_dir: Path | None = None) -> Settings:
         baseline_collection_name="papers-baseline",
         corrupted_collection_name="papers-corrupted",
         repaired_collection_name="papers-repaired",
-        source_api="Crossref REST API",
+        source_api="https://api.crossref.org/works",
         source_query="agentic retrieval augmented generation large language model",
         source_filter=f"from-pub-date:{source_from_date},has-abstract:true",
         max_results=24,
