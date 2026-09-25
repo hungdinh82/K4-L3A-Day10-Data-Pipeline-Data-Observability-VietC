@@ -1,0 +1,141 @@
+{
+  "success": false,
+  "report_name": "corrupted",
+  "row_count": 24,
+  "expectations": [
+    {
+      "type": "ExpectTableRowCountToBeBetween",
+      "success": true,
+      "result": {
+        "observed_value": 24
+      }
+    },
+    {
+      "type": "ExpectColumnValuesToNotBeNull",
+      "success": true,
+      "result": {
+        "element_count": 24,
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0,
+        "partial_unexpected_list": [],
+        "partial_unexpected_counts": [],
+        "partial_unexpected_index_list": []
+      }
+    },
+    {
+      "type": "ExpectColumnValuesToNotBeNull",
+      "success": true,
+      "result": {
+        "element_count": 24,
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0,
+        "partial_unexpected_list": [],
+        "partial_unexpected_counts": [],
+        "partial_unexpected_index_list": []
+      }
+    },
+    {
+      "type": "ExpectColumnValuesToNotBeNull",
+      "success": true,
+      "result": {
+        "element_count": 24,
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0,
+        "partial_unexpected_list": [],
+        "partial_unexpected_counts": [],
+        "partial_unexpected_index_list": []
+      }
+    },
+    {
+      "type": "ExpectColumnValuesToBeUnique",
+      "success": false,
+      "result": {
+        "element_count": 24,
+        "unexpected_count": 8,
+        "unexpected_percent": 33.33333333333333,
+        "partial_unexpected_list": [
+          "10.1145/3637528.3671802",
+          "10.1145/3637528.3671824",
+          "10.1145/3637528.3671823",
+          "10.1145/3637528.3671822",
+          "10.1145/3637528.3671802",
+          "10.1145/3637528.3671824",
+          "10.1145/3637528.3671823",
+          "10.1145/3637528.3671822"
+        ],
+        "missing_count": 0,
+        "missing_percent": 0.0,
+        "unexpected_percent_total": 33.33333333333333,
+        "unexpected_percent_nonmissing": 33.33333333333333,
+        "partial_unexpected_counts": [
+          {
+            "value": "10.1145/3637528.3671802",
+            "count": 2
+          },
+          {
+            "value": "10.1145/3637528.3671822",
+            "count": 2
+          },
+          {
+            "value": "10.1145/3637528.3671823",
+            "count": 2
+          },
+          {
+            "value": "10.1145/3637528.3671824",
+            "count": 2
+          }
+        ],
+        "partial_unexpected_index_list": [
+          0,
+          1,
+          2,
+          3,
+          20,
+          21,
+          22,
+          23
+        ]
+      }
+    },
+    {
+      "type": "ExpectColumnValueLengthsToBeBetween",
+      "success": false,
+      "result": {
+        "element_count": 24,
+        "unexpected_count": 4,
+        "unexpected_percent": 16.666666666666664,
+        "partial_unexpected_list": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "missing_count": 0,
+        "missing_percent": 0.0,
+        "unexpected_percent_total": 16.666666666666664,
+        "unexpected_percent_nonmissing": 16.666666666666664,
+        "partial_unexpected_counts": [
+          {
+            "value": "",
+            "count": 4
+          }
+        ],
+        "partial_unexpected_index_list": [
+          0,
+          1,
+          20,
+          21
+        ]
+      }
+    }
+  ],
+  "freshness": {
+    "latest_published": "2026-06-12",
+    "oldest_published": "2021-09-25",
+    "stale_rows": 8,
+    "total_rows": 24,
+    "stale_ratio": 0.3333333333333333,
+    "threshold_days": 180,
+    "is_fresh": false
+  }
+}

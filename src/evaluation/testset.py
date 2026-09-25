@@ -14,7 +14,7 @@ class TestSet:
 
 
 def build_test_set(df: pd.DataFrame, output_path) -> list[dict[str, Any]]:
-    """TODO(student): tao bo evaluation set tu cleaned dataframe.
+    """Build an evaluation set from the cleaned dataframe.
 
     Pseudo-code:
     1. Kiem tra so luong document toi thieu.

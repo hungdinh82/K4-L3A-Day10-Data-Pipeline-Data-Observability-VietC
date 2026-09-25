@@ -8,7 +8,7 @@ from ingestion.crossref import PaperRecord
 
 
 def build_clean_dataframe(records: list[PaperRecord], run_date: datetime) -> pd.DataFrame:
-    """TODO(student): clean raw records thanh dataframe san sang de embed.
+    """Clean raw records into an embedding-ready dataframe.
 
     Pseudo-code:
     1. Normalize title, summary, authors, categories.

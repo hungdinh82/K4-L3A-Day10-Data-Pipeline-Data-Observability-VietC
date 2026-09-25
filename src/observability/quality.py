@@ -16,7 +16,7 @@ from core.config import Settings
 
 
 def run_data_quality_checks(df: pd.DataFrame, settings: Settings, report_name: str) -> dict[str, Any]:
-    """TODO(student): tao bo data quality checks.
+    """Run the data quality checks and freshness gate.
 
     Pseudo-code:
     1. Check row count.
@@ -57,7 +57,7 @@ def run_data_quality_checks(df: pd.DataFrame, settings: Settings, report_name: s
 
 
 def build_freshness_report(df: pd.DataFrame, settings: Settings, report_path) -> dict[str, Any]:
-    """TODO(student): tong hop freshness report.
+    """Build a freshness summary report.
 
     Pseudo-code:
     1. Tim latest va oldest published date.

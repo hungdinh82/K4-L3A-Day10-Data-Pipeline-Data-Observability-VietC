@@ -12,7 +12,7 @@ def generate_phase1_report(
     quality: dict[str, Any],
     freshness: dict[str, Any],
 ) -> None:
-    """TODO(student): viet markdown report cho baseline phase.
+    """Generate the Markdown report for the baseline phase.
 
     Pseudo-code:
     1. Gom source summary.
@@ -65,15 +65,19 @@ def generate_corruption_report(
     repaired_quality: dict[str, Any],
     corrupted_freshness: dict[str, Any],
     repaired_freshness: dict[str, Any],
+    baseline_quality: dict[str, Any] | None = None,
+    baseline_freshness: dict[str, Any] | None = None,
 ) -> None:
-    """TODO(student): viet markdown report so sanh baseline/corrupted/repaired."""
+    """Generate a Markdown comparison of baseline, corrupted, and repaired states."""
+    baseline_quality = baseline_quality or {}
+    baseline_freshness = baseline_freshness or {}
     rows = [
         ("retrieval_hit_rate", baseline_metrics, corrupted_metrics, repaired_metrics),
         ("mean_token_f1", baseline_metrics, corrupted_metrics, repaired_metrics),
         ("judge_accuracy", baseline_metrics, corrupted_metrics, repaired_metrics),
         ("mean_judge_score", baseline_metrics, corrupted_metrics, repaired_metrics),
-        ("quality_success", corrupted_quality, corrupted_quality, repaired_quality),
-        ("freshness", corrupted_freshness, corrupted_freshness, repaired_freshness),
+        ("quality_success", baseline_quality, corrupted_quality, repaired_quality),
+        ("freshness", baseline_freshness, corrupted_freshness, repaired_freshness),
     ]
     lines = [
         "# Corruption and Repair Report",
@@ -83,5 +87,15 @@ def generate_corruption_report(
     ]
     for key, baseline, corrupted, repaired in rows:
         lines.append(f"| `{key}` | {baseline.get(key, baseline.get('success', baseline.get('is_fresh', 'N/A')))} | {corrupted.get(key, corrupted.get('success', corrupted.get('is_fresh', 'N/A')))} | {repaired.get(key, repaired.get('success', repaired.get('is_fresh', 'N/A')))} |")
-    lines.append("")
+    lines.extend(
+        [
+            "",
+            "## Interpretation",
+            "",
+            "- Corrupted data is intentionally evaluated with the same benchmark as baseline.",
+            "- Repaired data is rebuilt from the raw snapshot, then re-indexed and re-evaluated.",
+            "- A successful repair requires the quality and freshness gates to pass again.",
+            "",
+        ]
+    )
     write_text(report_path, "\n".join(lines))

@@ -8,7 +8,7 @@ import pandas as pd
 
 
 def corrupt_clean_dataframe(df: pd.DataFrame, output_log_path) -> pd.DataFrame:
-    """TODO(student): simulate nhieu dang data corruption.
+    """Simulate several controlled data corruption scenarios.
 
     Pseudo-code:
     1. Drop mot so latest records.
@@ -78,7 +78,7 @@ def corrupt_clean_dataframe(df: pd.DataFrame, output_log_path) -> pd.DataFrame:
         }
     )
 
-    stale_positions = list(corrupted.index[6 : min(8, len(corrupted))])
+    stale_positions = list(corrupted.index[6 : min(13, len(corrupted))])
     stale_ids = corrupted.loc[stale_positions, "paper_id"].tolist()
     today = date.today()
     stale_day = today.replace(year=today.year - 5)

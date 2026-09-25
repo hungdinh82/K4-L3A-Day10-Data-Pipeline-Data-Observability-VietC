@@ -28,7 +28,7 @@ class PaperRecord:
 
 
 def parse_crossref_payload(payload: dict) -> list[PaperRecord]:
-    """TODO(student): parse Crossref payload thanh list PaperRecord.
+    """Parse a Crossref payload into PaperRecord objects.
 
     Pseudo-code:
     1. Duyet `payload["message"]["items"]`.
@@ -72,7 +72,7 @@ def parse_crossref_payload(payload: dict) -> list[PaperRecord]:
 
 
 def fetch_source_records(settings: Settings) -> list[PaperRecord]:
-    """TODO(student): goi source API, luu raw response, parse thanh records.
+    """Fetch source data, preserve the raw response, and parse records.
 
     Pseudo-code:
     1. Tao params tu `settings.source_query`, `settings.source_filter`, `settings.max_results`.
@@ -110,7 +110,7 @@ def fetch_source_records(settings: Settings) -> list[PaperRecord]:
 
 
 def load_raw_records(path: Path) -> list[PaperRecord]:
-    """TODO(student): doc JSON snapshot va map thanh `PaperRecord`."""
+    """Load a JSON snapshot and map it to PaperRecord objects."""
     payload = json.loads(path.read_text(encoding="utf-8"))
     return [PaperRecord(**item) for item in payload]
 

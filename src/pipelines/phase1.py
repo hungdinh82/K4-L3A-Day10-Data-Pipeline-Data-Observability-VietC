@@ -14,7 +14,7 @@ from evaluation.metrics import evaluate_pipeline
 
 
 def main() -> None:
-    """TODO(student): xay dung baseline pipeline end-to-end.
+    """Run the baseline pipeline end-to-end.
 
     Pseudo-code:
     1. Load settings.
